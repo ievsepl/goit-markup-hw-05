@@ -113,6 +113,7 @@ body {
 .logo .logo-footer {
   color: var(--main-white-color);
 
+  transition-property: color;
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -152,14 +153,15 @@ body {
   color: var(--secondary-text-color);
   padding-top: 32px;
   padding-bottom: 32px;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .site-nav .link:hover,
 .site-nav .link:focus {
   color: var(--accent-color);
+
 }
 
 .site-nav .link.current {
@@ -218,14 +220,15 @@ body {
   display: flex;
   align-items: center;
 
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .contact:hover,
 .contact:focus {
   color: var(--accent-color);
   fill: var(--accent-color);
+
 }
 
 
@@ -309,7 +312,9 @@ body {
   letter-spacing: 0.06em;
   background-color: var(--accent-color);
   color: var(--main-white-color);
+  border: none;
 
+  transition-property: background-color;
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -317,7 +322,7 @@ body {
 .button.primary:hover,
 .button.primary:focus {
   background: #188CE8;
-  color: var(--main-white-color);
+
 }
 
 .button.secondary {
@@ -329,6 +334,8 @@ body {
   border: none;
   padding: 6px 22px;
 
+  box-shadow: none;
+  transition-property: background-color, color, box-shadow;
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -489,7 +496,9 @@ body {
   justify-content: center;
   align-items: center;
   fill: var(--main-icon-color);
+  border-radius: 22px;
 
+  transition-property: background-color, fill;
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -497,7 +506,6 @@ body {
 .list-link:hover,
 .list-link:focus {
   background-color: var(--accent-color);
-  border-radius: 22px;
   fill: var(--main-white-color);
 }
 
@@ -531,6 +539,7 @@ body {
   justify-content: center;
   align-items: center;
 
+  transition-property: fill;
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -567,6 +576,7 @@ body {
   color: rgba(255, 255, 255, 0.6);
   margin-bottom: 9px;
 
+  transition-property: color;
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -664,6 +674,7 @@ body {
 
 .example {
   box-shadow: none;
+  transition-property: box-shadow;
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -680,6 +691,15 @@ body {
 }
 
 .example-desc {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  transform: translateY(100%);
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
   font-weight: 400;
   font-size: 18px;
   line-height: 1.56;
@@ -691,14 +711,6 @@ body {
   justify-content: center;
   align-items: center;
 
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%;
-  transform: translateY(100%);
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
 }
 
@@ -713,18 +725,58 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.2);
-
   width: 100%;
   height: 100%;
 
+  background-color: rgba(0, 0, 0, 0.2);
+
+  opacity: 1;
+
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  /* visibility: hidden; */
+
+}
+
+.backdrop.is-hidden .modal {
+  transform: scale(0.8) translate(-50%, -50%);
+  opacity 0;
 }
 
 .modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: ;
+
   width: 528px;
   height: 581px;
   background-color: var(--main-white-color);
+
+  transform: scale(1) translate(-50%, -50%);
+
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  /* transform: translate(-100% -100%); */
+}
+
+.close {
   position: absolute;
-  left: 536px;
-  top: 221px;
+  right: 8px;
+  top: 8px;
+
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
 }
